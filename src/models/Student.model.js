@@ -12,7 +12,7 @@ class Student {
   }
   static create(newStudent, result) {
     this.findByRollNumber(newStudent.roll_number, function (err, student) {
-      if (err) res.send(err);
+      if (err) result(err, null);
       if (student.length === 0) {
         dbConn.query(
           "INSERT INTO Students set ?",

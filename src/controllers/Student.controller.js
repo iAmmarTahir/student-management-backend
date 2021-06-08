@@ -45,20 +45,32 @@ exports.update = function (req, res) {
       .status(400)
       .send({ error: true, message: "Please provide all required field" });
   } else {
-    Student.update(
-      req.params.roll_number,
-      new Student(req.body),
-      function (err, student) {
-        if (err) res.send(err);
-        res.json({ error: false, message: "Student successfully updated" });
+    Student.findByRollNumber(req.params.roll_number, function (err, student) {
+      if (student.length !== 0) {
+        Student.update(
+          req.params.roll_number,
+          new Student(req.body),
+          function (err, student) {
+            if (err) res.send(err);
+            res.json({ error: false, message: "Student successfully updated" });
+          }
+        );
+      } else {
+        res.json({ error: false, message: "Student not found" });
       }
-    );
+    });
   }
 };
 
 exports.delete = function (req, res) {
-  Student.delete(req.params.roll_number, function (err, student) {
-    if (err) res.send(err);
-    res.json({ error: false, message: "Student successfully deleted" });
+  Student.findByRollNumber(req.params.roll_number, function (err, student) {
+    if (student.length !== 0) {
+      Student.delete(req.params.roll_number, function (err, student) {
+        if (err) res.send(err);
+        res.json({ error: false, message: "Student successfully deleted" });
+      });
+    } else {
+      res.json({ error: false, message: "Student not found" });
+    }
   });
 };

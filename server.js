@@ -15,14 +15,15 @@ app.use(bodyParser.json());
 
 // define a root route
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Student Managment API V1.0");
 });
 
-// Require employee routes
+// Require routes
 const studentRoutes = require("./src/routes/Student.route");
-
+const courseRoutes = require("./src/routes/Course.route");
 // using as middleware
 app.use("/api/students", studentRoutes);
+app.use("/api/courses", courseRoutes);
 
 // listen for requests
 app.listen(port, () => {
