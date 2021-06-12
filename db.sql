@@ -1,3 +1,4 @@
+
 CREATE TABLE Students (
 	roll_number VARCHAR(8) NOT NULL PRIMARY KEY,
 	name VARCHAR(70) NOT NULL,
@@ -24,3 +25,8 @@ CREATE TABLE StudentCourses (
 	FOREIGN KEY(course_ID) REFERENCES Courses(course_ID) ON DELETE CASCADE,
 	PRIMARY KEY (roll_number, course_ID)
 )
+
+/*
+docker exec -it [container_name] mysql -uroot -p
+--user="user" --database="db" --password="password" < "D:\Semester Work\Cloud Proj\student-management-backend\db.sql"
+*/

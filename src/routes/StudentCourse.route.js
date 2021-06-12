@@ -10,8 +10,8 @@ router.post("/", studentCourseController.create);
 
 // Retrieve a single student with roll_number
 router.get(
-  "/:roll_number/:course_ID",
-  studentCourseController.findByRollNumberAndCourseID
+  "/:roll_number",
+  studentCourseController.findByRollNumber
 );
 
 // Delete a student with roll_number

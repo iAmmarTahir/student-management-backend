@@ -11,7 +11,7 @@ exports.findAll = function (req, res) {
 
 exports.create = function (req, res) {
   const new_student = new Student(req.body);
-
+  console.log(req.body);
   if (req.body.constructor === Object && Object.keys(req.body).length < 2) {
     res
       .status(400)
@@ -28,10 +28,9 @@ exports.create = function (req, res) {
   }
 };
 
-exports.findByRollNumberAndCourseID = function (req, res) {
-  Student.findByRollNumberAndCourseID(
+exports.findByRollNumber = function (req, res) {
+  Student.findByRollNumber(
     req.params.roll_number,
-    req.params.course_ID,
     function (err, student) {
       if (err) res.send(err);
       if (student.length > 0) {
@@ -48,30 +47,16 @@ exports.findByRollNumberAndCourseID = function (req, res) {
 };
 
 exports.delete = function (req, res) {
-  Student.findByRollNumberAndCourseID(
+  Student.delete(
     req.params.roll_number,
     req.params.course_ID,
     function (err, student) {
       if (err) res.send(err);
-      if (student.length > 0) {
-        Student.delete(
-          req.params.roll_number,
-          req.params.course_ID,
-          function (err, student) {
-            if (err) res.send(err);
-            res.json({
-              error: false,
-              message: "Student Course successfully removed",
-            });
-          }
-        );
-      } else {
-        res.json({
-          error: true,
-          message: "No Student Courses found",
-          data: student,
-        });
-      }
+      res.json({
+        error: false,
+        message: "Student Course successfully removed",
+      });
     }
   );
 };
+
