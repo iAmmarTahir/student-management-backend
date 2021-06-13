@@ -1,7 +1,16 @@
 version: "3.1"
 services:
+  backend:
+    image: ammartahircs/student-management-backend:latest
+    ports:
+      - "5000:5000"
+    depends_on:
+      - "db"
+    environment:
+      WAIT_HOSTS: db:3306
+      DATABASE_HOST: "db"
   db:
-    image: mysql:5.7
+    image: ammartahircs/student-management-db:latest
     restart: always
     environment:
       MYSQL_DATABASE: "db"

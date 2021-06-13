@@ -6,7 +6,7 @@ CREATE TABLE Students (
 	semester INTEGER NOT NULL,
 	warnings INTEGER NOT NULL,
 	cgpa FLOAT NOT NULL
-)
+);
 
 CREATE TABLE Courses (
 	course_ID VARCHAR(8) NOT NULL PRIMARY KEY,
@@ -15,7 +15,7 @@ CREATE TABLE Courses (
 	offered_in_sem INTEGER NOT NULL,
 	is_compulsory BOOLEAN NOT NULL,
 	department VARCHAR(70) NOT NULL
-)
+);
 
 CREATE TABLE StudentCourses (
 	roll_number VARCHAR(8) NOT NULL,
@@ -23,4 +23,4 @@ CREATE TABLE StudentCourses (
 	FOREIGN KEY(roll_number) REFERENCES Students(roll_number) ON DELETE CASCADE,
 	FOREIGN KEY(course_ID) REFERENCES Courses(course_ID) ON DELETE CASCADE,
 	PRIMARY KEY (roll_number, course_ID)
-)
+);
