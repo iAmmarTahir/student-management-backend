@@ -1,3 +1,4 @@
+
 CREATE TABLE Students (
 	roll_number VARCHAR(8) NOT NULL PRIMARY KEY,
 	name VARCHAR(70) NOT NULL,
